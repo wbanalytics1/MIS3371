@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<!--
+Program name: patient-form.html
+Author: David Boggs
+Date created: 2026-02-19
+Version: Final
+Description: MIS3371 Patient Registration Form
+-->
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Patient Registration</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+
+  <!-- ===================== HEADER ===================== -->
+  <header class="topbar">
+    <div class="topbarLeft">
+      <div class="brandIcon">U</div>
+      <div class="brandName">Ubuntu United Health Network</div>
+    </div>
+
+    <div class="topbarCenter">
+      <div class="portalTitle">Patient Registration Portal</div>
+      <div class="todayLine">
+        Today is: <span id="todayText"></span>
+      </div>
+    </div>
+
+    <div class="topbarRight">
+      <button class="btnTop btnTopGhost" type="button">Sign In</button>
+      <button class="btnTop btnTopSolid" type="button">New Patient</button>
+    </div>
+  </header>
+
+  <!-- ===================== MAIN ===================== -->
+  <main class="page">
+    <div class="contentGrid">
+
+      <!-- ===================== LEFT: SECTION A ===================== -->
+      <section class="panel panelA">
+        <div class="sectionBar">Section A</div>
+
+        <h1 class="panelTitle">Patient Registration</h1>
+        <div class="panelSubtitle">Please fill in your information below</div>
+        <div class="titleRule"></div>
+
+        <form class="formA" action="thankyou.html" method="GET">
+
+          <!-- Row 1 -->
+          <div class="row row3">
+            <div class="field">
+              <label for="firstName">First Name</label>
+              <input id="firstName" name="firstName" type="text" />
+            </div>
+
+            <div class="field">
+              <label for="mi">M.I.</label>
+              <input id="mi" name="mi" type="text" maxlength="1" />
+            </div>
+
+            <div class="field">
+              <label for="lastName">Last Name</label>
+              <input id="lastName" name="lastName" type="text" />
+            </div>
+          </div>
+
+          <!-- Row 2 (SSN / DOB / Gender / Vaccinated / Insurance) -->
+          <div class="row row2wide">
+            <div class="field">
+              <label for="ssn">SSN:</label>
+              <input id="ssn" name="ssn" type="password" />
+            </div>
+
+            <div class="field">
+              <label for="dob">DOB: <span class="hint">(MM/DD/YYYY)</span></label>
+              <input id="dob" name="dob" type="text" placeholder="MM/DD/YYYY" />
+            </div>
+
+            <div class="field inlineGroup">
+              <label>Gender:</label>
+              <div class="inlineChecks">
+                <label class="miniCheck"><input type="checkbox" /> Male</label>
+                <label class="miniCheck"><input type="checkbox" /> Female</label>
+                <label class="miniCheck"><input type="checkbox" /> Other</label>
+              </div>
+            </div>
+
+            <div class="field inlineGroup">
+              <label>Vaccinated?</label>
+              <div class="inlineChecks">
+                <label class="miniCheck"><input type="checkbox" /> Yes</label>
+                <label class="miniCheck"><input type="checkbox" /> No</label>
+              </div>
+            </div>
+
+            <div class="field inlineGroup">
+              <label>Insurance?</label>
+              <div class="inlineChecks">
+                <label class="miniCheck"><input type="checkbox" /> Yes</label>
+                <label class="miniCheck"><input type="checkbox" /> No</label>
+              </div>
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="addr1">Address Line 1</label>
+            <input id="addr1" name="addr1" type="text" />
+          </div>
+
+          <div class="field">
+            <div class="labelRow">
+              <label for="addr2">Address Line 2</label>
+              <span class="optional">(Optional)</span>
+            </div>
+            <input id="addr2" name="addr2" type="text" />
+          </div>
+
+          <div class="row row3 cityStateZip">
+            <div class="field">
+              <label for="city">City</label>
+              <input id="city" name="city" type="text" />
+            </div>
+
+            <div class="field">
+              <label for="state">State</label>
+              <select id="state" name="state">
+                <option value=""></option>
+                <option value="TX" selected>TX</option>
+                <option value="NM">NM</option>
+                <option value="AZ">AZ</option>
+                <option value="CA">CA</option>
+              </select>
+            </div>
+
+            <div class="field">
+              <label for="zip">Zip Code</label>
+              <input id="zip" name="zip" type="text" />
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="phone">Phone Number</label>
+            <input id="phone" name="phone" type="text" />
+          </div>
+
+          <div class="field">
+            <label for="email">Email Address</label>
+            <input id="email" name="email" type="email" />
+          </div>
+
+          <div class="field">
+            <div class="labelRow">
+              <label for="username">Username:</label>
+              <span class="hint">(Create Your New Username) - 20 Character Max</span>
+            </div>
+            <input id="username" name="username" type="text" maxlength="20" />
+          </div>
+
+          <div class="field">
+            <div class="labelRow">
+              <label for="password">Password:</label>
+              <span class="hint">(Create Your Password) - 6 Character Min</span>
+            </div>
+            <input id="password" name="password" type="password" minlength="6" />
+          </div>
+
+          <div class="field">
+            <label for="confirmPassword">Confirm Password:</label>
+            <input id="confirmPassword" name="confirmPassword" type="password" minlength="6" />
+          </div>
+
+          <div class="registerWrap">
+            <button class="btnRegister" type="submit">Register</button>
+          </div>
+
+          <div class="copyright">
+            © 2024 Ubuntu United Health Network. All rights reserved.
+          </div>
+        </form>
+      </section>
+
+      <!-- ===================== RIGHT: SECTION B ===================== -->
+      <section class="panel panelB">
+        <div class="sectionBar">Section B</div>
+
+        <h2 class="panelTitleB">Medical Questions</h2>
+
+        <div class="bTopGrid">
+          <!-- Left: history list -->
+          <div>
+            <div class="bSubhead">Medical History (check all that apply)</div>
+
+            <div class="historyList">
+              <div class="historyRow">
+                <input type="checkbox" id="hx1" />
+                <label for="hx1" class="historyLabel">Chicken Pox</label>
+              </div>
+              <div class="historyRow">
+                <input type="checkbox" id="hx2" />
+                <label for="hx2" class="historyLabel">Measles</label>
+              </div>
+              <div class="historyRow">
+                <input type="checkbox" id="hx3" />
+                <label for="hx3" class="historyLabel">Covid - 19</label>
+              </div>
+              <div class="historyRow">
+                <input type="checkbox" id="hx4" />
+                <label for="hx4" class="historyLabel">Small Pox</label>
+              </div>
+              <div class="historyRow">
+                <input type="checkbox" id="hx5" />
+                <label for="hx5" class="historyLabel">The Bubonic Plague</label>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right: Ubuntu big logo -->
+          <div class="logoBox">
+            <img class="ubuntuBigLogo" src="UbuntuUnitedHNLogo.png" alt="Ubuntu United Health Network" />
+          </div>
+        </div>
+
+        <!-- Health rating -->
+        <div class="healthBlock">
+          <div class="bSubhead">Health Rating (1-10)</div>
+
+          <div class="ratingLine">
+            <input class="ratingSlider" type="range" min="1" max="10" value="3" />
+          </div>
+
+          <div class="ratingNums">
+            <span class="n1">1</span>
+            <span class="n2">2</span>
+            <span class="n3">3</span>
+            <span class="n4">4</span>
+            <span class="n5">5</span>
+            <span class="n6">6</span>
+            <span class="n7">7</span>
+            <span class="n8">8</span>
+            <span class="n9">9</span>
+            <span class="n10">10</span>
+          </div>
+
+          <div class="ratingEnds">
+            <span class="poor">Poor</span>
+            <span class="excellent">Excellent</span>
+          </div>
+        </div>
+
+        <!-- Symptoms -->
+        <div class="symptomsBlock">
+          <div class="bSubhead symptomsTitle">Current Symptoms</div>
+          <textarea class="symptomsArea" placeholder="Describe your current symptoms"></textarea>
+        </div>
+
+        <!-- Buttons -->
+        <div class="bBtnRow">
+          <button class="btnB btnBClear" type="reset">Clear/Start Over</button>
+          <button class="btnB btnBSubmit" type="button" onclick="window.location.href='thankyou.html'">Submit</button>
+        </div>
+
+        <!-- Bottom row: contact + powered by -->
+        <div class="bBottomRow">
+          <button class="contactPill" type="button">
+            <span class="mailIcon">✉</span>
+            Contact Us
+          </button>
+
+          <img class="poweredImg" src="wbanalytics-banner.png" alt="Powered by WBAnalytics" />
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <script>
+    const today = new Date();
+    const options = { weekday:"long", year:"numeric", month:"long", day:"numeric" };
+    document.getElementById("todayText").textContent = today.toLocaleDateString("en-US", options);
+  </script>
+</body>
+</html>
