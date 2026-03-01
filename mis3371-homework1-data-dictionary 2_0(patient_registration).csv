@@ -1,0 +1,24 @@
+Sequence,varname,type,size,required,"permission (s=system,u=user)",description,key,pattern/regex,minsize/value,default
+1,patient_id,INT,10,s,s,Primary key (system-generated),primary,,1,
+2,created_at,TIMESTAMP,20,s,s,Row creation timestamp,,YYYY-MM-DD HH:MM:SS,,CURRENT_TIMESTAMP
+3,updated_at,TIMESTAMP,20,s,s,Row last updated timestamp,,YYYY-MM-DD HH:MM:SS,,CURRENT_TIMESTAMP
+4,user_id,VARCHAR,20,y,u,Desired user ID (separate from email),unique,"^[A-Za-z0-9_]{4,20}$",4,
+5,email,VARCHAR,254,y,u,Email address,unique,^[^@\s]+@[^@\s]+\.[^@\s]+$,,
+6,password_hash,VARCHAR,255,y,s,Password hash (do not store plaintext),,,,
+7,first_name,VARCHAR,30,y,u,First name,,^[A-Za-z'\- ]+$,1,
+8,middle_initial,CHAR,1,n,u,Middle initial,,^[A-Za-z]?$,0,
+9,last_name,VARCHAR,30,y,u,Last name,,^[A-Za-z'\- ]+$,1,
+10,date_of_birth,DATE,10,y,u,Date of birth (entered as MM/DD/YYYY),,^(0[1-9]|1[0-2])/(0[1-9]|[12]\d|3[01])/\d{4}$,,
+11,gender,VARCHAR,10,y,u,Gender,,Male/Female/Other,,
+12,ssn_masked,VARCHAR,11,y,u,SSN entered (masked on form); do not use real SSN when testing,,^\d{3}-?\d{2}-?\d{4}$,9,
+13,address_line1,VARCHAR,30,y,u,Address line 1,,,1,
+14,address_line2,VARCHAR,30,n,u,Address line 2,,,0,
+15,city,VARCHAR,30,y,u,City,,^[A-Za-z.\- ]+$,1,
+16,state,CHAR,2,y,u,State / territory (dropdown: 50 states + DC + PR),,US State codes + DC + PR,,
+17,zip_code,VARCHAR,10,y,u,ZIP code (5–10 chars; NOT number input type),,"^\d{5}(-\d{4})?$|^\d{5,10}$",5,
+18,phone,VARCHAR,14,n,u,Phone number (if collected),,^\(?\d{3}\)?[- ]?\d{3}[- ]?\d{4}$,,
+19,symptoms_description,TEXT,0,y,u,Symptoms description textarea (>=3 lines x 50 cols on form),,,,
+20,past_conditions,VARCHAR,255,y,u,Checkbox list (5+ options). Store as comma-separated codes.,,CSV list,,
+21,vaccinated,CHAR,1,y,u,Vaccinated? (radio group),,Y/N,,
+22,has_insurance,CHAR,1,y,u,Has insurance? (radio group),,Y/N,,
+23,health_rating,TINYINT,2,y,u,Health rating slider (1–10),,1–10,1,5
