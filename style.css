@@ -1,0 +1,502 @@
+/*
+Program name: style.css
+Author: David Boggs
+Date created: 2026-02-19
+Date last edited: 2026-02-28
+Version: 1.0
+Description: Exact styling for MIS3371 HW1 Patient Registration page (two-panel layout to match draw.io mock).
+*/
+
+/* ===================== BASE ===================== */
+*{ box-sizing: border-box; }
+
+body{
+  margin:0;
+  font-family: Arial, Helvetica, sans-serif;
+  color:#0f172a;
+  background: linear-gradient(#b8d2e8, #dceaf6);
+}
+
+/* ===================== TOPBAR (matches mock) ===================== */
+.topbar{
+  height:64px;
+  background:#fff;
+  border-bottom:1px solid rgba(0,0,0,0.08);
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding: 0 18px;
+}
+
+.topbarLeft{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  min-width: 280px;
+}
+
+.brandIcon{
+  width:34px;
+  height:34px;
+  border-radius:50%;
+  background:#2a66ff;
+  color:#fff;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-weight:800;
+}
+
+.brandName{
+  font-weight:700;
+  font-size:14px;
+  color:#223048;
+}
+
+.topbarCenter{
+  text-align:center;
+  flex:1;
+  line-height:1.2;
+}
+
+.portalTitle{
+  font-size:13px;
+  font-weight:700;
+  color:#223048;
+}
+
+.todayLine{
+  font-size:13px;
+  color:#223048;
+}
+
+.topbarRight{
+  display:flex;
+  gap:10px;
+  min-width: 240px;
+  justify-content:flex-end;
+}
+
+.btnTop{
+  height:30px;
+  padding: 0 14px;
+  font-size:12px;
+  border-radius:2px;
+  border:1px solid rgba(0,0,0,0.18);
+  background:#fff;
+  cursor:pointer;
+}
+
+.btnTopGhost{
+  background:#fff;
+  color:#223048;
+}
+
+.btnTopSolid{
+  border-color:#2a66ff;
+  background:#2a66ff;
+  color:#fff;
+  font-weight:700;
+}
+
+/* ===================== PAGE LAYOUT ===================== */
+.page{
+  padding: 18px 0 28px;
+}
+
+.contentGrid{
+  width: 1080px;
+  max-width: calc(100% - 40px);
+  margin: 0 auto;
+  display:grid;
+  grid-template-columns: 1.05fr 0.95fr;
+  gap: 20px;
+}
+
+/* ===================== PANELS ===================== */
+.panel{
+  background:#fff;
+  border:1px solid rgba(0,0,0,0.10);
+  position:relative;
+}
+
+.panelA{
+  padding: 18px 18px 10px;
+}
+
+.panelB{
+  background: transparent;
+  border:none;
+  padding: 0;
+}
+
+/* ===== Section Bar (teal strip like draw.io) ===== */
+.sectionBar{
+  position:absolute;
+  top: 8px;
+  left: 8px;
+  width: 210px;
+  height: 18px;
+  background:#0b6d7f;
+  color:#fff;
+  font-size:11px;
+  font-weight:700;
+  display:flex;
+  align-items:center;
+  padding-left:10px;
+}
+
+/* ===================== LEFT PANEL TYPO ===================== */
+.panelTitle{
+  margin: 22px 0 4px;
+  font-size: 34px;
+  font-weight: 800;
+  text-align:center;
+  color:#223048;
+}
+
+.panelSubtitle{
+  text-align:center;
+  color:#8aa0b4;
+  font-size: 13px;
+  margin-bottom: 10px;
+}
+
+.titleRule{
+  width: 72%;
+  margin: 0 auto 16px;
+  border-top: 2px solid rgba(0,0,0,0.06);
+}
+
+/* ===================== FORM A ===================== */
+.field{ margin-bottom: 12px; }
+
+label{
+  display:block;
+  font-size:13px;
+  color:#4a5a6b;
+  margin-bottom:6px;
+  font-weight:700;
+}
+
+.hint{
+  font-weight: 600;
+  color:#9aa9b8;
+  font-size:12px;
+}
+
+.optional{
+  color:#9aa9b8;
+  font-size:12px;
+  font-style: italic;
+  margin-left: 8px;
+}
+
+.labelRow{
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+select{
+  width:100%;
+  height: 38px;
+  border:1px solid rgba(0,0,0,0.18);
+  background:#fbfdff;
+  padding: 0 10px;
+  font-size: 13px;
+}
+
+select{
+  appearance: none;
+  background-image:
+    linear-gradient(45deg, transparent 50%, #6b7c8d 50%),
+    linear-gradient(135deg, #6b7c8d 50%, transparent 50%),
+    linear-gradient(#fbfdff, #fbfdff);
+  background-position:
+    calc(100% - 16px) 16px,
+    calc(100% - 11px) 16px,
+    100% 0;
+  background-size: 5px 5px, 5px 5px, 2.5em 2.5em;
+  background-repeat: no-repeat;
+  padding-right: 34px;
+}
+
+/* rows */
+.row{ display:grid; gap: 12px; }
+.row3{ grid-template-columns: 1.5fr 0.6fr 1.2fr; }
+.row2wide{
+  grid-template-columns: 1fr 0.7fr 1fr 0.8fr 0.8fr;
+  align-items:end;
+}
+
+.inlineGroup label{ margin-bottom:4px; }
+
+.inlineChecks{
+  display:grid;
+  gap: 3px;
+}
+
+.miniCheck{
+  font-size: 12px;
+  color:#4a5a6b;
+  font-weight: 600;
+  display:flex;
+  align-items:center;
+  gap:6px;
+}
+
+.miniCheck input{
+  width: 14px;
+  height: 14px;
+  accent-color: #0b6d7f;
+}
+
+.cityStateZip{ grid-template-columns: 1.8fr 0.8fr 1fr; }
+
+/* register button */
+.registerWrap{
+  margin-top: 18px;
+  display:flex;
+  justify-content:center;
+}
+
+.btnRegister{
+  width: 78%;
+  height: 44px;
+  background:#2a66ff;
+  border:1px solid rgba(0,0,0,0.14);
+  color:#fff;
+  font-weight:800;
+  font-size:14px;
+  cursor:pointer;
+}
+
+copyright, .copyright{
+  margin-top: 14px;
+  text-align:center;
+  font-size:12px;
+  color:#9aa9b8;
+}
+
+/* ===================== RIGHT PANEL (Section B block exactly like mock) ===================== */
+.panelB{
+  position:relative;
+}
+
+.panelTitleB{
+  margin: 26px 0 10px;
+  font-size: 32px;
+  font-weight: 800;
+  text-align:center;
+  color:#223048;
+}
+
+.panelB .sectionBar{
+  left: 0px;
+  top: 0px;
+  width: 210px;
+}
+
+.panelB{
+  padding: 18px 18px 10px;
+  background: transparent;
+}
+
+.bSubhead{
+  font-size: 13px;
+  font-weight: 700;
+  color:#4a5a6b;
+  margin: 8px 0 8px;
+}
+
+.bTopGrid{
+  display:grid;
+  grid-template-columns: 1fr 300px;
+  gap: 18px;
+  align-items:start;
+}
+
+/* history list */
+.historyList{
+  margin-top: 6px;
+}
+
+.historyRow{
+  display:grid;
+  grid-template-columns: 18px 1fr;
+  gap: 10px;
+  align-items:center;
+  margin: 8px 0;
+}
+
+.historyRow input{
+  width: 14px;
+  height: 14px;
+  accent-color:#0b6d7f;
+}
+
+.historyLabel{
+  height: 26px;
+  border: 1px solid rgba(0,0,0,0.18);
+  background:#fbfdff;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size: 13px;
+  font-weight: 700;
+  color:#223048;
+}
+
+/* logo box */
+.logoBox{
+  display:flex;
+  justify-content:center;
+  align-items:flex-start;
+  padding-top: 6px;
+}
+
+.ubuntuBigLogo{
+  width: 240px;
+  max-width: 100%;
+  height:auto;
+}
+
+/* Health rating */
+.healthBlock{
+  margin-top: 6px;
+}
+
+.ratingLine{
+  margin-top: 6px;
+}
+
+.ratingSlider{
+  width: 100%;
+  accent-color:#2a66ff;
+}
+
+.ratingNums{
+  display:flex;
+  justify-content:space-between;
+  margin-top: 8px;
+  font-weight: 800;
+  font-size: 14px;
+}
+
+.n1{ color:#e11d48; }
+.n2{ color:#f97316; }
+.n3{ color:#f59e0b; }
+.n4{ color:#fbbf24; }
+.n5{ color:#fde047; }
+.n6{ color:#84cc16; }
+.n7{ color:#22c55e; }
+.n8{ color:#14b8a6; }
+.n9{ color:#0ea5e9; }
+.n10{ color:#2563eb; }
+
+.ratingEnds{
+  display:flex;
+  justify-content:space-between;
+  margin-top: 4px;
+  font-style: italic;
+  font-weight: 700;
+  font-size: 13px;
+}
+
+.poor{ color:#e11d48; }
+.excellent{ color:#2563eb; }
+
+/* Symptoms */
+.symptomsTitle{
+  font-size: 18px;
+  font-weight: 800;
+  color:#223048;
+  margin-top: 10px;
+}
+
+.symptomsArea{
+  width: 100%;
+  height: 160px;
+  border:1px solid rgba(0,0,0,0.18);
+  background:#fbfdff;
+  padding: 10px;
+  font-size: 13px;
+  resize: none;
+}
+
+/* Buttons row */
+.bBtnRow{
+  margin-top: 10px;
+  display:grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.btnB{
+  height: 54px;
+  background:#2a66ff;
+  color:#fff;
+  font-weight: 800;
+  border: 1px solid rgba(255,255,255,0.35);
+  cursor:pointer;
+  font-size: 15px;
+}
+
+.btnBClear{
+  border-right: 2px solid rgba(255,255,255,0.60);
+}
+
+.btnBSubmit{
+  border-left: 2px solid rgba(255,255,255,0.60);
+}
+
+/* Bottom row: Contact + Powered image (fills the “dead space”) */
+.bBottomRow{
+  margin-top: 16px;
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-end;
+  min-height: 110px;
+}
+
+.contactPill{
+  display:flex;
+  align-items:center;
+  gap: 12px;
+  background:#0b2f6f;
+  color:#fff;
+  border:none;
+  padding: 14px 26px;
+  border-radius: 14px;
+  font-weight: 800;
+  font-size: 14px;
+  cursor:pointer;
+  box-shadow: 0 10px 18px rgba(0,0,0,0.14);
+}
+
+.mailIcon{
+  width: 32px;
+  height: 32px;
+  border-radius: 10px;
+  border: 2px solid rgba(255,255,255,0.55);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size: 16px;
+}
+
+.poweredImg{
+  width: 320px;
+  max-width: 44%;
+  height:auto;
+}
+
+/* ===================== RESPONSIVE ===================== */
+@media (max-width: 980px){
+  .contentGrid{ grid-template-columns: 1fr; }
+  .bTopGrid{ grid-template-columns: 1fr; }
+  .poweredImg{ max-width: 70%; }
+}
