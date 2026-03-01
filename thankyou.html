@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<!--
+Program name: thankyou.html
+Author: David Boggs
+Date created: 2026-02-19
+Date last edited: 2026-02-28
+Version: 1.0
+Description: Thank you confirmation page for MIS3371 HW1.
+-->
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Thank You</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <div class="brandIcon">U</div>
+      <div class="brandName">Ubuntu United Health Network</div>
+    </div>
+
+    <div class="topbarCenter">
+      <div class="todayLine">
+        Today is:
+        <span id="todayText"></span>
+      </div>
+    </div>
+
+    <div class="topbarRight">
+      <a href="patient-form.html" class="btnHeader btnHeaderGhost">Back</a>
+      <a href="#" class="btnHeader btnHeaderPrimary">Home</a>
+    </div>
+  </header>
+
+  <main class="pageBg">
+    <div class="container" style="grid-template-columns: 1fr;">
+      <section class="panel" style="min-height: 420px;">
+        <div class="sectionBar">Thank You</div>
+
+        <h1 class="title">Thank you for your submission.</h1>
+        <div class="subtitle">Your patient registration has been received.</div>
+        <div class="titleRule"></div>
+
+        <div style="text-align:center; margin-top: 18px;">
+          <a class="btnHeader btnHeaderPrimary" href="patient-form.html" style="height:44px; font-size:14px;">
+            Return to Form
+          </a>
+        </div>
+
+        <div class="leftFooter">© 2024 Ubuntu United Health Network. All rights reserved.</div>
+      </section>
+    </div>
+  </main>
+
+  <script>
+    const today = new Date();
+    const options = { weekday: "long", year: "numeric", month: "long", day: "numeric" };
+    document.getElementById("todayText").textContent = today.toLocaleDateString("en-US", options);
+  </script>
+
+  <!-- End of file -->
+</body>
+</html>
