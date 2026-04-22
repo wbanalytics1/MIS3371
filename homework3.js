@@ -17,13 +17,14 @@ Description: On-the-fly validation and review logic for MIS3371 Homework 3.
   const reviewBtn = byId('reviewBtn');
   const reviewContent = byId('reviewContent');
   const clearBtn = byId('clearBtn');
-  const wellnessSlider = byId('wellnessSlider');
+  const wellnessSlider = byId('wellnessSlider') || byId('salarySlider');
   const sliderValue = byId('sliderValue');
   const contactArea = byId('contactArea');
   const contactBtn = byId('contactBtn');
 
   const dateOpts = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-  byId('todayText').textContent = new Date().toLocaleDateString('en-US', dateOpts);
+  const todayText = byId('todayText');
+  if (todayText) todayText.textContent = new Date().toLocaleDateString('en-US', dateOpts);
 
   const regex = {
     name: /^[A-Za-z'-]{1,30}$/,
@@ -225,18 +226,25 @@ Description: On-the-fly validation and review logic for MIS3371 Homework 3.
       return ok;
     },
     agreeTerms() {
-      const ok = byId('agreeTerms').checked;
+      const agree = byId('agreeTerms');
+      if (!agree) return true;
+      const ok = agree.checked;
       setMsg('agreeTermsError', ok ? '' : 'You must agree to the Terms & Privacy Notice.');
       return ok;
     }
   };
 
-  const setSliderValue = () => { sliderValue.textContent = `${wellnessSlider.value} / 10`; };
+  const setSliderValue = () => {
+    if (!sliderValue || !wellnessSlider) return;
+    const max = Number(wellnessSlider.max) || 10;
+    sliderValue.textContent = `${wellnessSlider.value} / ${max}`;
+  };
   setSliderValue();
-  wellnessSlider.addEventListener('input', setSliderValue);
+  wellnessSlider?.addEventListener('input', setSliderValue);
 
   const bind = (id, fn) => {
     const el = byId(id);
+    if (!el) return;
     el.addEventListener('input', fn);
     el.addEventListener('blur', fn);
   };
@@ -256,12 +264,12 @@ Description: On-the-fly validation and review logic for MIS3371 Homework 3.
   bind('password', () => { validators.password(); validators.confirmPassword(); });
   bind('confirmPassword', validators.confirmPassword);
   bind('symptoms', validators.symptoms);
-  byId('state').addEventListener('change', validators.state);
+  byId('state')?.addEventListener('change', validators.state);
 
   ['housing', 'vaccinated', 'insurance', 'careCoverage', 'history'].forEach((name) => {
     namedInputs(name).forEach((el) => el.addEventListener('change', validators[name]));
   });
-  byId('agreeTerms').addEventListener('change', validators.agreeTerms);
+  byId('agreeTerms')?.addEventListener('change', validators.agreeTerms);
 
   const validateAll = () => {
     const checks = [
@@ -296,7 +304,7 @@ Description: On-the-fly validation and review logic for MIS3371 Homework 3.
       state: byId('state').value,
       email: byId('email').value,
       phone: byId('phone').value || '(not provided)',
-      severity: `${wellnessSlider.value} / 10`,
+      severity: wellnessSlider ? `${wellnessSlider.value} / ${wellnessSlider.max || 10}` : 'N/A',
       symptoms: byId('symptoms').value.trim(),
       housing: document.querySelector('input[name="housing"]:checked')?.value || 'N/A',
       coverage: document.querySelector('input[name="careCoverage"]:checked')?.value || 'N/A',
@@ -317,10 +325,10 @@ Description: On-the-fly validation and review logic for MIS3371 Homework 3.
     `;
   });
 
-  clearBtn.addEventListener('click', () => {
+  clearBtn?.addEventListener('click', () => {
     setTimeout(() => {
       form.querySelectorAll('.msg').forEach((m) => { m.textContent = ''; });
-      form.querySelectorAll('.field').forEach((f) => f.classList.remove('is-valid', 'is-invalid'));
+      document.querySelectorAll('.field').forEach((f) => f.classList.remove('is-valid', 'is-invalid'));
       submitBtn.classList.add('hiddenBtn');
       setSliderValue();
       reviewContent.textContent = 'Press Review Data after validation to see your entries.';
