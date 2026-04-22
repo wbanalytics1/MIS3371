@@ -18,7 +18,7 @@
 <body>
   <main class="wrap">
     <h1>Ubuntu United Health Network Terms &amp; Privacy Notice</h1>
-    <p><strong>Effective date:</strong> April 21, 2026</p>
+    <p><strong>Effective date:</strong> <span id="effectiveDateTime"></span></p>
     <p class="note">This is a demo policy for coursework purposes. It explains how we handle submitted form information, security practices, and your rights.</p>
 
     <h2>1) Information We Collect</h2>
@@ -49,5 +49,20 @@
       <img src="wbanalytics-banner.png" alt="Managed by WBAnalytics" style="max-width: 320px; width: 100%; height: auto;" />
     </p>
   </main>
+  <script>
+    (function setEffectiveDateTime() {
+      const effectiveDateTime = document.getElementById("effectiveDateTime");
+      if (!effectiveDateTime) return;
+
+      const now = new Date();
+      effectiveDateTime.textContent = now.toLocaleString(undefined, {
+        month: "long",
+        day: "numeric",
+        hour: "numeric",
+        minute: "2-digit",
+        second: "2-digit"
+      });
+    })();
+  </script>
 </body>
 </html>
