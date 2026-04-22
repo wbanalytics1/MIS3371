@@ -163,7 +163,7 @@ select {
   position: absolute;
   z-index: 5;
   left: 0;
-  bottom: calc(100% + 10px);
+  top: calc(100% + 10px);
   width: min(340px, 70vw);
   background: linear-gradient(160deg, #0b2f6f, #123f8f);
   border: 1px solid rgba(147,197,253,.45);
@@ -171,7 +171,9 @@ select {
   padding: 12px;
   box-shadow: 0 18px 30px rgba(0,0,0,.24);
 }
-.contactArea.open .contactPanel { display: block; }
+.contactArea.open .contactPanel,
+.contactArea:hover .contactPanel,
+.contactArea:focus-within .contactPanel { display: block; }
 .contactTitle { font-size: 13px; font-weight: 800; margin-bottom: 8px; color:#dbeafe; }
 .contactPanel a {
   display: block;
