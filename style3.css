@@ -1,0 +1,206 @@
+/*
+Program name: style3.css
+Author: David Boggs
+Date created: 2026-04-11
+Date last edited: 2026-04-21
+Version: Homework 3 (Refined)
+Description: Styling for MIS3371 Homework 3 Patient Registration Form with live validation messages.
+*/
+
+* { box-sizing: border-box; }
+
+:root {
+  --ink:#0f172a;
+  --steel:#4a5a6b;
+  --muted:#7f93a8;
+  --panel:#ffffff;
+  --bg1:#d2e2f0;
+  --bg2:#edf4fa;
+  --brand:#2a66ff;
+  --accent:#0b6d7f;
+  --error:#b91c1c;
+  --ok:#0f766e;
+}
+
+body {
+  margin: 0;
+  font-family: "Inter", Arial, Helvetica, sans-serif;
+  color: var(--ink);
+  background: linear-gradient(160deg, var(--bg1), var(--bg2));
+}
+
+.topbar {
+  min-height: 70px;
+  background: rgba(255,255,255,.95);
+  backdrop-filter: blur(6px);
+  border-bottom: 1px solid rgba(15, 23, 42, 0.08);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 18px;
+}
+
+.topbarLeft, .topbarRight { display:flex; align-items:center; gap:10px; }
+.topbarLeft { min-width: 280px; }
+.topbarRight { min-width: 240px; justify-content: flex-end; }
+.topbarCenter { text-align:center; flex:1; line-height:1.25; }
+.brandIcon { width:36px; height:36px; border-radius:50%; background:var(--brand); color:#fff; display:flex; align-items:center; justify-content:center; font-weight:800; }
+.brandName { font-weight:700; font-size:14px; color:#223048; }
+.portalTitle, .todayLine { font-size:14px; font-weight:700; color:#223048; }
+
+.btnTop { height:32px; padding:0 16px; font-size:12px; border-radius:4px; border:1px solid rgba(15,23,42,.18); background:#fff; cursor:pointer; }
+.btnTopSolid { border-color:var(--brand); background:var(--brand); color:#fff; font-weight:700; }
+
+.page { padding: 22px 0 34px; }
+.contentGrid { width:1120px; max-width:calc(100% - 40px); margin:0 auto; display:grid; grid-template-columns:1.05fr .95fr; gap:20px; }
+
+.panel {
+  background: var(--panel);
+  border:1px solid rgba(15,23,42,.12);
+  box-shadow: 0 14px 30px rgba(31, 64, 104, 0.08);
+  border-radius: 10px;
+  position: relative;
+}
+.panelA, .panelB { padding: 18px 18px 12px; }
+.sectionBar { position:absolute; top:10px; left:10px; width:220px; height:20px; background:linear-gradient(90deg, var(--accent), #146f99); color:#fff; font-size:11px; font-weight:700; display:flex; align-items:center; padding-left:10px; border-radius:3px; }
+
+.panelTitle { margin:28px 0 4px; font-size:44px; font-weight:800; text-align:center; color:#223048; letter-spacing:-.02em; }
+.panelSubtitle { text-align:center; color:var(--muted); font-size:20px; margin-bottom:10px; }
+.titleRule { width:74%; margin:0 auto 16px; border-top:2px solid rgba(15,23,42,.08); }
+.panelTitleB { margin:30px 0 10px; font-size:54px; font-weight:800; text-align:center; color:#223048; letter-spacing:-.02em; }
+
+.field { margin-bottom:12px; }
+label { display:block; font-size:13px; color:var(--steel); margin-bottom:6px; font-weight:700; }
+.hint, .optional { color:#93a4b7; font-size:12px; }
+.optional { font-style: italic; }
+.labelRow { display:flex; align-items:center; gap:10px; flex-wrap:wrap; }
+
+input[type="text"], input[type="email"], input[type="password"], select, textarea {
+  width:100%;
+  border:1px solid rgba(15,23,42,.18);
+  background:#fbfdff;
+  font-size:13px;
+  border-radius:4px;
+}
+input[type="text"], input[type="email"], input[type="password"], select { height:40px; padding:0 10px; }
+textarea { padding:10px; resize:none; }
+
+input:focus, select:focus, textarea:focus { outline:2px solid rgba(42,102,255,.18); border-color:var(--brand); }
+
+.field.is-valid input,
+.field.is-valid select,
+.field.is-valid textarea { border-color: rgba(15, 118, 110, .65); }
+
+.field.is-invalid input,
+.field.is-invalid select,
+.field.is-invalid textarea { border-color: rgba(185, 28, 28, .6); background:#fffaf9; }
+
+select {
+  appearance:none;
+  background-image: linear-gradient(45deg, transparent 50%, #6b7c8d 50%), linear-gradient(135deg, #6b7c8d 50%, transparent 50%), linear-gradient(#fbfdff, #fbfdff);
+  background-position: calc(100% - 16px) 17px, calc(100% - 11px) 17px, 100% 0;
+  background-size:5px 5px, 5px 5px, 2.5em 2.5em;
+  background-repeat:no-repeat;
+  padding-right:34px;
+}
+
+.row { display:grid; gap:12px; }
+.row3 { grid-template-columns:1.5fr 0.6fr 1.2fr; }
+.row2wide { grid-template-columns:1fr .7fr 1fr 1fr 1fr; align-items:end; }
+.cityStateZip { grid-template-columns:1.8fr .8fr 1fr; }
+.inlineGroup label { margin-bottom:4px; }
+.inlineChecks { display:grid; gap:3px; }
+.inlineChecksHorizontal { display:flex; gap:14px; flex-wrap:wrap; }
+.miniCheck { font-size:12px; color:var(--steel); font-weight:600; display:flex; align-items:center; gap:6px; }
+.miniCheck input, .historyRow input { width:14px; height:14px; accent-color:var(--accent); }
+
+.msg { min-height:18px; margin-top:4px; font-size:12px; font-weight:700; color:var(--error); line-height:1.3; }
+
+.registerWrap { margin-top:18px; display:flex; justify-content:center; }
+.dualBtnWrap { gap:12px; }
+.btnRegister { width:78%; height:46px; border:1px solid rgba(0,0,0,.14); color:#fff; font-weight:800; font-size:14px; cursor:pointer; border-radius:4px; }
+.btnValidate { background:linear-gradient(120deg, #0b6d7f, #0f8094); }
+.btnSubmitReal { background:linear-gradient(120deg, #2a66ff, #4679ff); }
+.hiddenBtn { display:none; }
+.copyright { margin-top:14px; text-align:center; font-size:12px; color:#9aa9b8; }
+
+.bSubhead { font-size:13px; font-weight:700; color:var(--steel); margin:8px 0; }
+.bTopGrid { display:grid; grid-template-columns:1fr 300px; gap:18px; align-items:start; }
+.historyRow { display:grid; grid-template-columns:18px 1fr; gap:10px; align-items:center; margin:8px 0; }
+.historyLabel { height:28px; border:1px solid rgba(0,0,0,.18); background:#fbfdff; display:flex; align-items:center; justify-content:center; font-size:13px; font-weight:700; color:#223048; }
+.logoBox { display:flex; justify-content:center; align-items:flex-start; padding-top:6px; }
+.ubuntuBigLogo { width:240px; max-width:100%; height:auto; }
+.ratingSlider { width:100%; accent-color:var(--brand); }
+.sliderValueWrap { margin-top:8px; font-size:14px; font-weight:700; color:#223048; }
+.ratingEnds { display:flex; justify-content:space-between; margin-top:4px; font-style:italic; font-weight:700; font-size:13px; }
+.poor { color:#e11d48; }
+.excellent { color:#2563eb; }
+.symptomsTitle { font-size:18px; font-weight:800; color:#223048; margin-top:10px; }
+.symptomsArea { height:160px; }
+.reviewArea { height:80px; }
+
+.bBtnRow { margin-top:10px; display:grid; grid-template-columns:1fr 1fr; }
+.btnB { height:54px; background:#2a66ff; color:#fff; font-weight:800; border:1px solid rgba(255,255,255,.35); cursor:pointer; font-size:15px; }
+.btnBClear { border-right:2px solid rgba(255,255,255,.60); }
+.btnBSubmit { border-left:2px solid rgba(255,255,255,.60); }
+.reviewBox { margin-top:14px; padding:12px; border:1px solid rgba(0,0,0,.18); background:#f8fbff; min-height:120px; border-radius:4px; }
+.reviewTitle { font-size:14px; font-weight:800; margin-bottom:8px; color:#223048; }
+.bBottomRow { margin-top:16px; display:flex; justify-content:space-between; align-items:flex-end; min-height:110px; }
+.contactArea {
+  --contact-accent: #0b2f6f;
+  position: relative;
+}
+.contactArea:hover { --contact-accent: #1d4ed8; }
+.contactPill {
+  display:flex; align-items:center; gap:12px;
+  background:var(--contact-accent); color:#fff; border:none; padding:14px 26px;
+  border-radius:14px; font-weight:800; font-size:14px; cursor:pointer;
+  box-shadow:0 10px 18px rgba(0,0,0,.14); transition: background .2s ease;
+}
+.mailIcon { width:32px; height:32px; border-radius:10px; border:2px solid rgba(255,255,255,.55); display:flex; align-items:center; justify-content:center; font-size:16px; }
+.contactPanel {
+  display: none;
+  position: absolute;
+  z-index: 5;
+  left: 0;
+  bottom: calc(100% + 10px);
+  width: min(340px, 70vw);
+  background: linear-gradient(160deg, #0b2f6f, #123f8f);
+  border: 1px solid rgba(147,197,253,.45);
+  border-radius: 10px;
+  padding: 12px;
+  box-shadow: 0 18px 30px rgba(0,0,0,.24);
+}
+.contactArea.open .contactPanel { display: block; }
+.contactTitle { font-size: 13px; font-weight: 800; margin-bottom: 8px; color:#dbeafe; }
+.contactPanel a {
+  display: block;
+  text-decoration: none;
+  color: #eff6ff;
+  font-size: 13px;
+  font-weight: 700;
+  padding: 6px 8px;
+  border-radius: 6px;
+  transition: background .2s ease, color .2s ease;
+}
+.contactArea:hover .contactPanel a:hover {
+  background: rgba(191, 219, 254, .24);
+  color: #ffffff;
+}
+.contactMeta {
+  margin-top: 8px;
+  color: #dbeafe;
+  font-size: 12px;
+  line-height: 1.4;
+}
+.poweredImg { width:320px; max-width:44%; height:auto; }
+
+@media (max-width:980px) {
+  .contentGrid, .bTopGrid, .row3, .row2wide, .cityStateZip { grid-template-columns:1fr; }
+  .panelTitle { font-size:34px; }
+  .panelSubtitle { font-size:16px; }
+  .panelTitleB { font-size:40px; }
+  .poweredImg { max-width:70%; }
+  .topbar { height:auto; flex-direction:column; gap:10px; }
+  .topbarLeft, .topbarRight { min-width:unset; }
+}

@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Thank You | Ubuntu United Health Network</title>
+  <style>
+    :root {
+      --bg: #e8f0f8;
+      --panel: #ffffff;
+      --ink: #1e2f47;
+      --muted: #5d7288;
+      --brand: #2a66ff;
+      --accent: #0b6d7f;
+    }
+
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: "Inter", Arial, sans-serif;
+      background: radial-gradient(circle at top right, #f8fbff, var(--bg));
+      color: var(--ink);
+      display: grid;
+      place-items: center;
+      padding: 24px;
+    }
+
+    .card {
+      width: min(760px, 100%);
+      background: var(--panel);
+      border: 1px solid rgba(30, 47, 71, 0.12);
+      border-radius: 14px;
+      padding: 40px 30px;
+      text-align: center;
+      box-shadow: 0 20px 42px rgba(21, 53, 88, 0.14);
+    }
+
+    .seal {
+      width: 72px;
+      height: 72px;
+      border-radius: 50%;
+      margin: 0 auto 12px;
+      background: linear-gradient(135deg, var(--brand), var(--accent));
+      color: #fff;
+      font-weight: 800;
+      display: grid;
+      place-items: center;
+      letter-spacing: .03em;
+    }
+
+    h1 {
+      margin: 8px 0 10px;
+      font-size: clamp(1.8rem, 4vw, 2.5rem);
+      letter-spacing: -0.02em;
+    }
+
+    p { margin: 6px 0; font-size: 1.03rem; color: var(--muted); }
+
+    .line {
+      width: min(420px, 90%);
+      margin: 22px auto;
+      border-top: 2px solid rgba(30, 47, 71, 0.1);
+    }
+
+    .actions { margin-top: 18px; display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+    .btn {
+      text-decoration: none;
+      border-radius: 8px;
+      padding: 12px 16px;
+      font-weight: 700;
+      border: 1px solid rgba(30, 47, 71, 0.2);
+    }
+
+    .btn.primary {
+      background: linear-gradient(135deg, var(--brand), #4b7bff);
+      color: #fff;
+      border: none;
+    }
+
+    .btn.secondary { color: var(--ink); background: #fff; }
+  </style>
+</head>
+<body>
+  <main class="card" role="main" aria-live="polite">
+    <div class="seal">UHN</div>
+    <h1>Thank You for Your Submission</h1>
+    <p>Your patient registration has been received successfully.</p>
+    <p>Our care team will review your details and contact you shortly.</p>
+
+    <div class="line"></div>
+
+    <p><strong>Ubuntu United Health Network</strong></p>
+    <p>Compassionate care. Exceptional outcomes.</p>
+
+    <div class="actions">
+      <a class="btn primary" href="patient-form3.html">Submit Another Registration</a>
+      <a class="btn secondary" href="index3.html">Return to Start</a>
+    </div>
+  </main>
+</body>
+</html>
