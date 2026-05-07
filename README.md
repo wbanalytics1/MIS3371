@@ -17,6 +17,7 @@ Front-end web development coursework focused on building form-based transaction 
 - Local Storage
 
 ## Repository Contents
+- HW4 entry page: `index4.html` redirects to `patient-form4.html` for the Assignment 4 submission
 - HW1: Structured patient registration form with external CSS and basic submission flow
 - HW2: Enhanced validation and review display using HTML patterns and JavaScript-assisted checks
 - HW3: Real-time, on-the-fly JavaScript validation with dynamic error messaging and controlled submit logic

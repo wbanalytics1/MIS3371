@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Terms & Privacy Notice | Ubuntu United Health Network</title>
+  <style>
+    body { font-family: Arial, Helvetica, sans-serif; margin: 0; background:#f2f7fc; color:#1f3047; }
+    .wrap { max-width: 860px; margin: 24px auto; background:#fff; border:1px solid rgba(0,0,0,.1); border-radius:10px; padding:28px; }
+    h1, h2 { margin: 0 0 10px; }
+    h1 { font-size: 1.8rem; }
+    h2 { margin-top: 22px; font-size: 1.1rem; }
+    p, li { line-height: 1.55; color:#3d526b; }
+    ul { padding-left: 20px; }
+    .note { padding: 12px; border-left: 4px solid #2a66ff; background:#f7faff; }
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <h1>Ubuntu United Health Network Terms &amp; Privacy Notice</h1>
+    <p><strong>Effective date:</strong> <span id="effectiveDateTime"></span></p>
+    <p class="note">This is a demo policy for coursework purposes. It explains how we handle submitted form information, security practices, and your rights.</p>
+
+    <h2>1) Information We Collect</h2>
+    <p>We collect the information you provide in the registration form, including contact details, health-history selections, and symptom descriptions so we can process intake and respond to care requests.</p>
+
+    <h2>2) How We Use Your Information</h2>
+    <ul>
+      <li>To contact you regarding your intake request.</li>
+      <li>To prepare care staff for your visit or follow-up.</li>
+      <li>To improve service quality and patient experience.</li>
+    </ul>
+
+    <h2>3) Data Security and Retention</h2>
+    <p>We use administrative and technical safeguards to protect submitted data. Information is retained only as long as necessary for intake, care operations, and legal obligations.</p>
+
+    <h2>4) Sharing and Privacy</h2>
+    <p>We do not sell personal data. We may share limited information with authorized healthcare operations personnel or service providers only when needed for intake support.</p>
+
+    <h2>5) Your Choices and Rights</h2>
+    <p>You may request updates to your submitted information, ask questions about privacy practices, or request deletion where legally permitted.</p>
+
+    <h2>6) Contact</h2>
+    <p>For policy questions, contact: <strong>david@wbanalytics.dev</strong>.</p>
+
+    <h2>Managed by WBAnalytics</h2>
+    <p>This patient intake experience is managed and supported by WBAnalytics digital operations.</p>
+    <p>
+      <img src="wbanalytics-banner.png" alt="Managed by WBAnalytics" style="max-width: 320px; width: 100%; height: auto;" />
+    </p>
+  </main>
+  <script>
+    (function setEffectiveDateTime() {
+      const effectiveDateTime = document.getElementById("effectiveDateTime");
+      if (!effectiveDateTime) return;
+
+      const now = new Date();
+      effectiveDateTime.textContent = now.toLocaleString(undefined, {
+        month: "long",
+        day: "numeric",
+        hour: "numeric",
+        minute: "2-digit",
+        second: "2-digit"
+      });
+    })();
+  </script>
+</body>
+</html>
