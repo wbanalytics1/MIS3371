@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<!--
+Program name: patient-form4.html
+Author: David Boggs
+Date created: 2026-04-11
+Date last edited: 2026-05-07
+Version: Homework 4 (Refined)
+Description: MIS3371 Homework 4 Patient Registration Form with Fetch API, iframe, fixed UI, cookies, and local storage.
+-->
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Homework 4 - Patient Registration</title>
+  <link rel="stylesheet" href="style4.css" />
+  <script src="homework4.js" defer></script>
+</head>
+
+<body>
+  <header class="topbar">
+    <div class="topbarLeft">
+      <div class="brandIcon">U</div>
+      <div class="brandName">Ubuntu United Health Network</div>
+    </div>
+
+    <div class="topbarCenter">
+      <div class="portalTitle">Patient Registration Portal</div>
+      <div class="todayLine">Today is: <span id="todayText"></span></div>
+      <div class="welcomeLine" id="welcomeLine">Welcome New User</div>
+    </div>
+
+    <div class="topbarRight">
+      <button class="btnTop btnTopGhost" type="button">Sign In</button>
+      <button class="btnTop btnTopSolid" id="newPatientTopBtn" type="button">New Patient</button>
+    </div>
+  </header>
+
+  <main class="page">
+    <div class="contentGrid">
+      <section class="panel panelA">
+        <div class="sectionBar">Section A</div>
+
+        <h1 class="panelTitle">Patient Registration</h1>
+        <div class="panelSubtitle">Please fill in your information below</div>
+        <div class="titleRule"></div>
+        <div class="returningUserBox hiddenBtn" id="returningUserBox"></div>
+
+        <form id="patientForm" class="formA" action="thankyou4.html" method="GET" novalidate>
+          <div class="row row3">
+            <div class="field">
+              <label for="firstName">First Name</label>
+              <input id="firstName" name="firstName" type="text" maxlength="30" title="Required. 1 to 30 characters. Letters, apostrophes, and dashes only." placeholder="Enter first name" />
+              <div class="msg" id="firstNameError"></div>
+            </div>
+
+            <div class="field">
+              <label for="mi">M.I.</label>
+              <input id="mi" name="mi" type="text" maxlength="1" title="Optional. One letter only. No numbers." placeholder="M" />
+              <div class="msg" id="miError"></div>
+            </div>
+
+            <div class="field">
+              <label for="lastName">Last Name</label>
+              <input id="lastName" name="lastName" type="text" maxlength="30" title="Required. 1 to 30 characters. Letters, apostrophes, and dashes only." placeholder="Enter last name" />
+              <div class="msg" id="lastNameError"></div>
+            </div>
+          </div>
+
+          <div class="row row2wide">
+            <div class="field">
+              <label for="ssn">SSN / ID Number</label>
+              <input id="ssn" name="ssn" type="password" maxlength="11" title="Required. 9 digits only. Dashes will be inserted automatically." placeholder="123-45-6789" />
+              <div class="msg" id="ssnError"></div>
+            </div>
+
+            <div class="field">
+              <label for="dob">DOB <span class="hint">(MM/DD/YYYY)</span></label>
+              <input id="dob" name="dob" type="text" maxlength="10" placeholder="MM/DD/YYYY" title="Required. Must be a valid date, not in the future, and not more than 120 years ago." />
+              <div class="msg" id="dobError"></div>
+            </div>
+
+            <div class="field inlineGroup">
+              <label>Housing</label>
+              <div class="inlineChecks">
+                <label class="miniCheck"><input type="radio" name="housing" value="Own" /> Own</label>
+                <label class="miniCheck"><input type="radio" name="housing" value="Rent" /> Rent</label>
+                <label class="miniCheck"><input type="radio" name="housing" value="Unsure" /> Unsure</label>
+              </div>
+              <div class="msg" id="housingError"></div>
+            </div>
+
+            <div class="field inlineGroup">
+              <label>Vaccinated?</label>
+              <div class="inlineChecks">
+                <label class="miniCheck"><input type="radio" name="vaccinated" value="Yes" /> Yes</label>
+                <label class="miniCheck"><input type="radio" name="vaccinated" value="No" /> No</label>
+                <label class="miniCheck"><input type="radio" name="vaccinated" value="Unsure" /> Unsure</label>
+              </div>
+              <div class="msg" id="vaccinatedError"></div>
+            </div>
+
+            <div class="field inlineGroup">
+              <label>Insurance?</label>
+              <div class="inlineChecks">
+                <label class="miniCheck"><input type="radio" name="insurance" value="Yes" /> Yes</label>
+                <label class="miniCheck"><input type="radio" name="insurance" value="No" /> No</label>
+                <label class="miniCheck"><input type="radio" name="insurance" value="Pending" /> Pending</label>
+              </div>
+              <div class="msg" id="insuranceError"></div>
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="addr1">Address Line 1</label>
+            <input id="addr1" name="addr1" type="text" minlength="2" maxlength="30" title="Required. 2 to 30 characters." placeholder="Street address" />
+            <div class="msg" id="addr1Error"></div>
+          </div>
+
+          <div class="field">
+            <div class="labelRow">
+              <label for="addr2">Address Line 2</label>
+              <span class="optional">(Optional)</span>
+            </div>
+            <input id="addr2" name="addr2" type="text" minlength="2" maxlength="30" title="Optional. If entered, must be 2 to 30 characters." placeholder="Apartment, suite, unit, building, floor, etc." />
+            <div class="msg" id="addr2Error"></div>
+          </div>
+
+          <div class="row cityStateZip">
+            <div class="field">
+              <label for="city">City</label>
+              <input id="city" name="city" type="text" minlength="2" maxlength="30" title="Required. 2 to 30 characters." placeholder="City" />
+              <div class="msg" id="cityError"></div>
+            </div>
+
+            <div class="field">
+              <label for="state">State</label>
+              <select id="state" name="state" title="Required. Select a state.">
+                <option value="">Loading states...</option>
+              </select>
+              <div class="msg" id="stateError"></div>
+            </div>
+
+            <div class="field">
+              <label for="zip">Zip Code</label>
+              <input id="zip" name="zip" type="text" maxlength="5" title="Required. 5 digits only." placeholder="79912" />
+              <div class="msg" id="zipError"></div>
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="phone">Phone Number</label>
+            <input id="phone" name="phone" type="text" maxlength="14" title="Optional. If entered, use 10 digits. Formatting will be added automatically." placeholder="(915) 555-1234" />
+            <div class="msg" id="phoneError"></div>
+          </div>
+
+          <div class="field">
+            <label for="email">Email Address</label>
+            <input id="email" name="email" type="email" maxlength="50" title="Required. Must be in the format name@domain.tld" placeholder="name@example.com" />
+            <div class="msg" id="emailError"></div>
+          </div>
+
+          <div class="field">
+            <div class="labelRow">
+              <label for="username">Desired User ID</label>
+              <span class="hint">5 to 20 chars, no spaces, no special characters except dash and underscore</span>
+            </div>
+            <input id="username" name="username" type="text" maxlength="20" title="Required. 5 to 20 characters. Cannot start with a number. Letters, numbers, dash, and underscore only." placeholder="create-user-id" />
+            <div class="msg" id="usernameError"></div>
+          </div>
+
+          <div class="field">
+            <div class="labelRow">
+              <label for="password">Password</label>
+              <span class="hint">At least 8 chars, 1 uppercase, 1 lowercase, 1 digit</span>
+            </div>
+            <input id="password" name="password" type="password" maxlength="30" title="Required. At least 8 characters. Must contain uppercase, lowercase, and a digit. Cannot equal the user ID." placeholder="Enter password" />
+            <div class="msg" id="passwordError"></div>
+          </div>
+
+          <div class="field">
+            <label for="confirmPassword">Re-enter Password</label>
+            <input id="confirmPassword" name="confirmPassword" type="password" maxlength="30" title="Required. Must exactly match the password." placeholder="Re-enter password" />
+            <div class="msg" id="confirmPasswordError"></div>
+          </div>
+
+          <div class="field rememberField">
+            <label class="miniCheck">
+              <input type="checkbox" id="rememberMe" name="rememberMe" value="Yes" checked />
+              Remember me for up to 48 hours on this device.
+            </label>
+            <div class="hint">Stores only the first name in a cookie and non-sensitive fields in local storage.</div>
+          </div>
+
+          <div class="field">
+            <label for="reviewNotes">Review / Notes</label>
+            <textarea id="reviewNotes" name="reviewNotes" class="reviewArea" title="Optional review notes area." placeholder="Optional notes for debugging/review"></textarea>
+            <div class="msg" id="reviewNotesError"></div>
+          </div>
+
+          <div class="registerWrap dualBtnWrap">
+            <button class="btnRegister btnValidate" id="validateBtn" type="button">Validate</button>
+            <button class="btnRegister btnSubmitReal hiddenBtn" id="realSubmitBtn" type="submit">Submit</button>
+          </div>
+
+          <div class="copyright">© 2026 Ubuntu United Health Network. All rights reserved.</div>
+        </form>
+      </section>
+
+      <section class="panel panelB">
+        <div class="sectionBar">Section B</div>
+        <h2 class="panelTitleB">Medical Questions</h2>
+
+        <div class="bTopGrid">
+          <div>
+            <div class="bSubhead">Medical History (check all that apply)</div>
+            <div class="historyList" id="historyList">
+              <div class="historyRow"><input type="checkbox" id="hxLoading" disabled /><label for="hxLoading" class="historyLabel">Loading options...</label></div>
+            </div>
+            <div class="msg" id="historyError"></div>
+          </div>
+
+          <div class="logoBox"><img class="ubuntuBigLogo" src="ubuntuuhn.png" alt="Ubuntu United Health Network" /></div>
+        </div>
+
+        <div class="healthBlock">
+          <div class="bSubhead">How bad do you feel right now? (1-10)</div>
+          <div class="ratingLine"><input class="ratingSlider" id="wellnessSlider" name="wellnessSlider" type="range" min="1" max="10" step="1" value="5" title="Slide to select how severe your symptoms feel." /></div>
+          <div class="sliderValueWrap"><span class="sliderValueLabel">Current Severity:</span><span id="sliderValue">5 / 10</span></div>
+          <div class="ratingEnds"><span class="poor">1 · Mild</span><span class="excellent">10 · Severe</span></div>
+        </div>
+
+        <div class="field">
+          <label class="bSubhead">Primary Care Coverage</label>
+          <div class="inlineChecks inlineChecksHorizontal">
+            <label class="miniCheck"><input type="radio" name="careCoverage" value="Private" /> Private Insurance</label>
+            <label class="miniCheck"><input type="radio" name="careCoverage" value="Government" /> Medicare / Medicaid</label>
+            <label class="miniCheck"><input type="radio" name="careCoverage" value="Self-Pay" /> Self-Pay</label>
+          </div>
+          <div class="msg" id="careCoverageError"></div>
+        </div>
+
+        <div class="symptomsBlock">
+          <div class="bSubhead symptomsTitle">Current Symptoms / Description</div>
+          <textarea class="symptomsArea" id="symptoms" name="symptoms" placeholder="Describe your current symptoms" title="Required. Please describe something."></textarea>
+          <div class="msg" id="symptomsError"></div>
+        </div>
+
+        <div class="resourceFrameBlock">
+          <div class="bSubhead">Patient Education iFrame</div>
+          <iframe class="resourceFrame" title="Patient education resources" src="health-resources4.html"></iframe>
+          <div class="hint">This embedded local page includes clickable external patient-education links and demonstrates the iframe requirement.</div>
+        </div>
+
+        <div class="field">
+          <label class="miniCheck">
+            <input type="checkbox" id="agreeTerms" name="agreeTerms" value="Yes" />
+            I agree to the <a href="terms4.html" target="_blank" rel="noopener noreferrer">Terms &amp; Privacy Notice</a>.
+          </label>
+          <div class="msg" id="agreeTermsError"></div>
+        </div>
+
+        <div class="bBtnRow">
+          <button class="btnB btnBClear" type="reset" id="clearBtn">Clear/Start Over</button>
+          <button class="btnB btnBSubmit" type="button" id="reviewBtn">Review Data</button>
+        </div>
+
+        <div class="reviewBox" id="reviewBox">
+          <div class="reviewTitle">Review Output</div>
+          <div id="reviewContent">Press Review Data after validation to see your entries.</div>
+        </div>
+
+        <div class="bBottomRow">
+          <div class="contactArea" id="contactArea">
+            <button class="contactPill" id="contactBtn" type="button" aria-expanded="false" aria-controls="contactPanel">
+              <span class="mailIcon">✉</span>Contact Us
+            </button>
+            <div class="contactPanel" id="contactPanel">
+              <div class="contactTitle">Contact & Support</div>
+              <a href="https://wbanalytics1.github.io/MIS3371/index4.html" target="_blank" rel="noopener noreferrer">MIS 3371 Project Page</a>
+              <a href="https://wbanalytics1.github.io/" target="_blank" rel="noopener noreferrer">WBAnalytics Website</a>
+              <a href="https://github.com/wbanalytics1" target="_blank" rel="noopener noreferrer">GitHub Profile (wbanalytics1)</a>
+              <a href="mailto:david@wbanalytics.dev">david@wbanalytics.dev</a>
+              <a href="tel:2138320349">213-832-0349</a>
+              <div class="contactMeta">Texts only. Response time 24–72 hours, M–F 5:00 AM – 3:30 PM CMT.</div>
+            </div>
+          </div>
+          <img class="poweredImg" src="wbanalytics-banner.png" alt="Powered by WBAnalytics" />
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer class="fixedFooter">
+    <span>Homework 4: Fetch API • iFrame • Fixed UI • Cookies • Local Storage</span>
+    <span>Ubuntu United Health Network © 2026</span>
+  </footer>
+</body>
+</html>

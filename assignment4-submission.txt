@@ -1,0 +1,5 @@
+Part 1 URL:
+https://wbanalytics1.github.io/MIS3371/patient-form4.html
+
+Part 2 Synopsis:
+The Assignment 4 page is a patient registration portal for Ubuntu United Health Network. It builds on the previous validation form by adding Fetch API content, an iframe, protected page elements, cookies, and local storage. The state dropdown is loaded from states4.json, and the medical history checklist is loaded from history-options4.json with try/catch fallback handling. The body includes a patient education iframe with clickable resources. The header stays visible while scrolling, and the footer remains fixed at the bottom of the viewport. I am particularly happy that the page can recognize a returning user by first name with a 48-hour cookie, show “Welcome back,” prefill the first name box, and offer a “Not [Name]” start-over checkbox. The Remember Me checkbox also controls whether the cookie and local storage are saved. Local storage restores non-sensitive form fields for a returning user. At this point, I do not have any known missing requirements; the only limitation is that storage is browser/device-specific.
